@@ -30,7 +30,7 @@ class TagApi(APIView):
 
 
 class TagListApi(APIView):
-    def get_all(self):
+    def get_all(self, request):
         tag = Tag.objects.all()
         serializer = TagSerializer(tag, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
