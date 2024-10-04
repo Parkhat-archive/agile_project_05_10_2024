@@ -5,12 +5,11 @@ from rest_framework import status
 
 from ..models.tag import Tag
 from ..serializers.tag_serializers import TagSerializer
-from ..models import *
 
 
 class TagApi(APIView):
 
-    def get_one(self, request, pk):
+    def get(self, request, pk):
         tag = Tag.objects.get(pk=pk)
         serializer = TagSerializer(tag)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -30,7 +29,7 @@ class TagApi(APIView):
 
 
 class TagListApi(APIView):
-    def get_all(self, request):
+    def get(self, request):
         tag = Tag.objects.all()
         serializer = TagSerializer(tag, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
